@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if [ "$#" -ne 1 ]; then
+  echo "Expected 1 parameter but got $#" >&2
+  exit 1
+fi
+
+name=$1
+
+filename="${MACROSES_HOME%/}/${name}"
+if [ ! -f ${filename} ]; then
+  echo "Can not find macros $name" >&2
+  exit 2
+fi
+
+vim $filename

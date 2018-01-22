@@ -1,0 +1,21 @@
+#!/bin/sh
+
+if [ "$#" -ne 2 ]; then
+  echo "Expected 2 parameter but got $#" >&2
+  exit 1
+fi
+
+oldname="${MACROSES_HOME%/}/$1"
+newname="${MACROSES_HOME%/}/$2"
+
+if [ ! -f $oldname ]; then
+  echo "Can not find macros $oldname" >&2
+  exit 2
+fi
+
+if [ -f $newname ]; then
+  echo "Alias $newname is already exists" >&2
+  exit 3
+fi
+
+mv $oldname $newname

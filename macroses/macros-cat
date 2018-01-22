@@ -1,0 +1,27 @@
+#!/bin/sh
+
+if [ "$#" -lt 1 ]; then
+  echo "Expected at least 1 parameter but got $#" >&2
+  exit 1
+fi
+
+names="$@"
+filenames=''
+for name in $names; do
+  filename="${MACROSES_HOME%/}/$name"
+  if [ -f ${filename} ]; then
+    filenames="$filenames $filename"
+  else
+    echo "Can not find macros $filename" >&2
+  fi
+done
+
+if [ "$#" -eq 1 ]; then
+  cat $filenames </dev/null
+else 
+  for filename in $filenames; do
+    echo "========================== ${filename##*/} ====================================="
+    cat $filename
+    echo
+  done
+fi

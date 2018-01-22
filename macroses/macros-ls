@@ -1,0 +1,9 @@
+#!/bin/sh
+
+command="ls -lh --color=always ${MACROSES_HOME}"
+
+if [ $# -gt 0 ]; then
+  $command | grep "$@"
+else
+  $command
+fi
