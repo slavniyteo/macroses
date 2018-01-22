@@ -1,0 +1,21 @@
+_macros-complete()
+{
+  local cur prev opts
+  COMPREPLY=()
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  prev="${COMP_WORDS[COMP_CWORD-1]}"
+  opts="$(ls $MACROSES_HOME)"
+
+  if [[ ${cur} == * ]] ; then
+      COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+      return 0
+  fi
+}
+
+complete -F _macros-complete macros-add
+complete -F _macros-complete macros-rm
+complete -F _macros-complete macros-cp
+complete -F _macros-complete macros-mv
+complete -F _macros-complete macros-ls
+complete -F _macros-complete macros-cat
+complete -F _macros-complete macros-vim
