@@ -1,6 +1,9 @@
 #!/bin/sh
 
-command="ls -lh --color=always ${MACROSES_HOME}"
+command="ls -lh \
+            --dereference-command-line-symlink-to-dir \
+            --color=always \
+            ${MACROSES_HOME}"
 
 if [ $# -gt 0 ]; then
   $command | grep "$@"
