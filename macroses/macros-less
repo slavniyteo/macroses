@@ -5,7 +5,7 @@ if [ "$#" -ne 1 ]; then
   exit 1
 fi
 
-name=$1
+name="$1"
 
 filename="${MACROSES_HOME%/}/${name}"
 if [ ! -f "${filename}" ]; then
@@ -13,4 +13,4 @@ if [ ! -f "${filename}" ]; then
   exit 2
 fi
 
-vim "$filename"
+less "$filename"

@@ -5,11 +5,11 @@ if [ "$#" -lt 1 ]; then
   exit 1
 fi
 
-names="$@"
+names=$*
 filenames=''
 for name in $names; do
   filename="${MACROSES_HOME%/}/$name"
-  if [ -f ${filename} ]; then
+  if [ -f "${filename}" ]; then
     filenames="$filenames $filename"
   else
     echo "Can not find macros $filename" >&2
@@ -17,11 +17,11 @@ for name in $names; do
 done
 
 if [ "$#" -eq 1 ]; then
-  cat $filenames </dev/null
+  cat "$filenames" </dev/null
 else 
   for filename in $filenames; do
     echo "========================== ${filename##*/} ====================================="
-    cat $filename
+    cat "$filename"
     echo
   done
 fi

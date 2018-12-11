@@ -8,14 +8,14 @@ fi
 oldname="${MACROSES_HOME%/}/$1"
 newname="${MACROSES_HOME%/}/$2"
 
-if [ ! -f $oldname ]; then
+if [ ! -f "$oldname" ]; then
   echo "Can not find macros $oldname" >&2
   exit 2
 fi
 
-if [ -f $newname ]; then
+if [ -f "$newname" ]; then
   echo "Alias $newname is already exists" >&2
   exit 3
 fi
 
-cp $oldname $newname
+cp "$oldname" "$newname"

@@ -5,8 +5,21 @@ command="ls -lh \
             --color=always \
             ${MACROSES_HOME}"
 
-if [ $# -gt 0 ]; then
-  $command | grep "$@"
-else
-  $command
+if [ "$1" = "p" ]; then
+  USE_PAGER=1
+  shift
 fi
+
+if [ $# -gt 0 ]; then
+  command="$command | grep \"$*\""
+fi
+
+if [ -n "$USE_PAGER" ]; then
+  command="$command \
+             | less --LONG-PROMPT \
+                    --RAW-CONTROL-CHARS \
+                    --status-column \
+                    --CLEAR-SCREEN "
+fi
+
+eval "$command"
