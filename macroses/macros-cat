@@ -5,9 +5,8 @@ if [ "$#" -lt 1 ]; then
   exit 1
 fi
 
-names=$*
 filenames=''
-for name in $names; do
+for name in "$@"; do
   filename="${MACROSES_HOME%/}/$name"
   if [ -f "${filename}" ]; then
     filenames="$filenames $filename"
@@ -15,6 +14,7 @@ for name in $names; do
     echo "Can not find macros $filename" >&2
   fi
 done
+filenames="${filenames# }"
 
 if [ "$#" -eq 1 ]; then
   cat "$filenames" </dev/null
